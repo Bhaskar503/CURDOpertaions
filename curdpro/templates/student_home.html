@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Student data</title>
+    {% include 'cdns.html' %}
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="">
+                <h2 class="text-center mt-4 mb-5">Student Details</h2>
+                <table class="table table-bordered">
+                    <thead class="bg-success text-white">
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Section</th>
+                            <th>Class</th>
+                            <th>School</th>
+                            <th>Telugu</th>
+                            <th>Hindi</th>
+                            <th>English</th>
+                            <th>Maths</th>
+                            <th>Science</th>
+                            <th>Social</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-dark text-white">
+                        {% for student in students %}
+                            <tr>
+                                <td>{{ student.first_name }}</td>
+                                <td>{{ student.last_name }}</td>
+                                <td>{{ student.section_name }}</td>
+                                <td>{{ student.class_name }}</td>
+                                <td>{{ student.school_name }}</td>
+                                <td>{{ student.telugu_marks }}</td>
+                                <td>{{ student.hindi_marks }}</td>
+                                <td>{{ student.english_marks }}</td>
+                                <td>{{ student.maths_marks }}</td>
+                                <td>{{ student.science_marks }}</td>
+                                <td>{{ student.social_marks }}</td>
+                                <td class="text-center"><a title="Edit"  href="{% url 'update' student.id %} "><img style="width:20px;height:20px" src="{% static 'images/edit-button.svg' %}"></a> <a data-toggle="" data-target="" title="Delete" class="ml-2" href="{% url 'delete' student.id %}"><img style="width:20px;height:20px" src="{% static 'images/bin.svg' %}"></a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a href="{% url 'add_student' %}" class="btn btn-success">Add Student</a>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">DELETE</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you want to delete this?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <input type="text" value="abcd" name="abcd">
+          <a class="btn btn-primary" href="">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>
